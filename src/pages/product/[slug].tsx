@@ -14,6 +14,7 @@ const ProductPage = ({ query }: { query: string }) => {
   const router = useRouter();
 
   const [product, setProduct] = useState<any>({});
+  const [amount, setAmount] = useState<number>(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,9 +29,17 @@ const ProductPage = ({ query }: { query: string }) => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    console.log(product);
-  }, [product]);
+  const handleBuy = async () => {
+    localStorage.setItem(
+      "item",
+      JSON.stringify({
+        id: product.name,
+        amount,
+      })
+    );
+
+    router.push("/payment");
+  };
 
   return (
     <MainLayout>
@@ -64,6 +73,7 @@ const ProductPage = ({ query }: { query: string }) => {
             <input
               type="tel"
               name="amount"
+              onChange={(e: any) => setAmount(e.target.value)}
               id="amount"
               className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
               placeholder="0"
@@ -72,14 +82,13 @@ const ProductPage = ({ query }: { query: string }) => {
           </div>
         </div>
         <div>
-          <Link href="/payment">
-            <button
-              type="button"
-              className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            >
-              Buy !
-            </button>
-          </Link>
+          <button
+            onClick={handleBuy}
+            type="button"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Buy !
+          </button>
         </div>
       </Container>
     </MainLayout>
