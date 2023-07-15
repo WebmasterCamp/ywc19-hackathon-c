@@ -35,8 +35,4 @@ Temporary Items
 
 .env
 
-routes/api/api_testfunc.go
-handler/handler_testfunc.go
-controller/controller_testfunc.go
-
 

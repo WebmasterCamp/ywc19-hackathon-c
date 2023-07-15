@@ -17,7 +17,7 @@ type Account struct {
 	Name          string    `gorm:"column:account_name;not null"`
 	Email         string    `gorm:"column:account_email;not null"`
 	Password      string    `gorm:"column:account_password;not null"`
-	Roles         string    `gorm:"column:account_roles;type:account_roles_enum;default:normal;not null"`
+	Roles         string    `gorm:"column:account_roles;type:account_roles_enum;default:user;not null"`
 	CreatedAt     time.Time `gorm:"column:account_created_at;type:timestamp;not null"`
 	UpdatedAt     time.Time `gorm:"column:account_updated_at;type:timestamp;not null"`
 }
