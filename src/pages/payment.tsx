@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 
 const Payment = () => {
@@ -103,7 +104,7 @@ const Payment = () => {
     <div
       className="relative"
     >
-      <img
+      <Image
         className="w-full h-auto"
         src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/svg-cards/card-visa-front.png"
         alt="front credit card"
@@ -133,14 +134,14 @@ const Payment = () => {
     <ul className="flex">
       
       <li className="mx-2">
-        <img
+        <Image
           className="w-14"
           src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/verified-by-visa.png"
           alt=""
         />
       </li>
       <li className="ml-5">
-        <img
+        <Image
           className="w-7"
           src="https://www.computop-paygate.com/Templates/imagesaboutYou_desktop/images/mastercard-id-check.png"
           alt=""
