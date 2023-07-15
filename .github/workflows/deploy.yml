@@ -43,6 +43,8 @@ jobs:
           image: ghcr.io/webmastercamp/${{ github.event.repository.name }}-backend@${{ steps.build-and-push.outputs.digest }}
           deploymentName: backend
           port: 80
+        env:
+          TZ: Asia/Bangkok
   frontend:
     runs-on: ubuntu-latest
     steps:
