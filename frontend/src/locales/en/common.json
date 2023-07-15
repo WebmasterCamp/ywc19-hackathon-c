@@ -1,0 +1,10 @@
+{
+  "greeting": "Hello world!",
+  "admin": {
+    "usersManager": "Users Manager",
+    "billsManager": "Bills Manager",
+    "productManager": "Product Manager",
+    "settings": "Settings",
+    "logout": "Logout"
+  }
+}
