@@ -2,28 +2,46 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
-  CalendarIcon,
-  ChartBarIcon,
   FolderIcon,
   HomeIcon,
-  InboxIcon,
   Bars3Icon,
   UsersIcon,
   XMarkIcon,
+  DocumentIcon,
 } from "@heroicons/react/24/outline";
 import { twMerge } from "tailwind-merge";
 import { ReactNode } from "react";
-
-const navigation = [
-  { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
-  { name: "Team", href: "#", icon: UsersIcon, current: false },
-  { name: "Projects", href: "#", icon: FolderIcon, current: false },
-  { name: "Calendar", href: "#", icon: CalendarIcon, current: false },
-  { name: "Documents", href: "#", icon: InboxIcon, current: false },
-  { name: "Reports", href: "#", icon: ChartBarIcon, current: false },
-];
+import { useRouter } from "next/router";
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
+  const { pathname } = useRouter();
+  const navigation = [
+    {
+      name: "Dashboard",
+      href: "/dashboard",
+      icon: HomeIcon,
+      current: pathname === "/dashboard",
+    },
+    {
+      name: "User Manager",
+      href: "/dashboard/users-manager",
+      icon: UsersIcon,
+      current: pathname === "/dashboard/users-manager",
+    },
+    {
+      name: "Product Manager",
+      href: "/dashboard/products-manager",
+      icon: FolderIcon,
+      current: pathname === "/dashboard/products-manager",
+    },
+    {
+      name: "Bills Manager",
+      href: "/dashboard/bills-manager",
+      icon: DocumentIcon,
+      current: pathname === "/dashboard/bills-manager",
+    },
+  ];
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
