@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN npm ci
+RUN npx pnpm i --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:lts-alpine3.16 AS builder
@@ -15,7 +15,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN npm run build
+RUN npx pnpm build
 
 # If using npm comment out above and use below instead
 # RUN npm run build

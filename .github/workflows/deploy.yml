@@ -1,43 +1,50 @@
-name: Deployment
+name: ci
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
-  packages: write
+    branches:
+      - 'main'
 
 concurrency:
   group: deploy
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  docker:
+    name: ${{ matrix.buildTarget }}
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        buildTarget: [frontend]
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-      - name: buildx
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: login
+      - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: build
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+      - name: Build and push
         id: build-and-push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
+          context: "{{defaultContext}}:${{ matrix.buildTarget }}"
           push: true
-          tags: ghcr.io/webmastercamp/${{ github.event.repository.name }}:latest
+          tags: ghcr.io/webmastercamp/${{ github.event.repository.name }}-${{ matrix.buildTarget }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      - name: deploy
+
+      - name: Deploy
         uses: WebmasterCamp/deploy-action@main
         with:
-          image: ghcr.io/webmastercamp/${{ github.event.repository.name }}@${{ steps.build-and-push.outputs.digest }}
+          image: ghcr.io/webmastercamp/${{ github.event.repository.name }}-${{ matrix.buildTarget }}@${{ steps.build-and-push.outputs.digest }}
+          deploymentName: ${{ matrix.buildTarget }}
           port: 3000
