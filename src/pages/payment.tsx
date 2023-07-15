@@ -1,27 +1,33 @@
+import Link from "next/link"
 
 const Payment = () => {
   const products = [
     {
+      id: 1,
       name: 'สินค้า 1',
       quantity: 2,
       price: 100,
     },
     {
+      id: 2,
       name: 'สินค้า 2',
       quantity: 1,
       price: 40,
     },
     {
+      id: 3,
       name: 'สินค้า 2',
       quantity: 1,
       price: 40,
     },
     {
+      id: 4,
       name: 'สินค้า 2',
       quantity: 1,
       price: 40,
     },
     {
+      id: 5,
       name: 'สินค้า 2',
       quantity: 1,
       price: 40,
@@ -66,7 +72,7 @@ const Payment = () => {
                       <tbody className="bg-white divide-y divide-gray-200">
 
                         {products.map((product) => (
-                          <tr>
+                          <tr key={product.id}>
                             <td className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap">
                                 {product.name}
                               </td>
@@ -216,11 +222,13 @@ const Payment = () => {
     </div>
   </main>
   <footer className="mt-6 p-4">
+    <Link href="/">
     <button
       className="submit-button px-4 py-3 rounded-full bg-blue-300 text-blue-900 focus:ring focus:outline-none w-full text-xl font-semibold transition-colors"
     >
       ชำระเงิน
     </button>
+    </Link>
   </footer>
 </div>
 
