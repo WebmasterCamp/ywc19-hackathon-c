@@ -33,7 +33,7 @@ const ProductPage = ({ query }: { query: string }) => {
     localStorage.setItem(
       "item",
       JSON.stringify({
-        id: product.id,
+        id: product.name,
         amount,
       })
     );
