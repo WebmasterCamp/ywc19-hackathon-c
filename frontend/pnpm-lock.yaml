@@ -18,6 +18,7 @@ specifiers:
   postcss: 8.4.26
   react: 18.2.0
   react-dom: 18.2.0
+  react-i18next: ^13.0.2
   tailwind-merge: ^1.13.2
   tailwindcss: 3.3.3
   typescript: 5.1.6
@@ -35,11 +36,12 @@ dependencies:
   firebase: 10.0.0
   i18next: 23.2.11
   next: 13.4.10_biqbaboplfbrettd7655fr4n2y
-  next-i18next: 14.0.0_3j7mbtrtrfwdlkidbmn35m6l3m
+  next-i18next: 14.0.0_h2xljqcp2gandk6fgyt6iac72i
   outline: link:@heroicons/react/outline
   postcss: 8.4.26
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-i18next: 13.0.2_ctize4pwwv5bii3bzjqwwlegcq
   tailwind-merge: 1.13.2
   tailwindcss: 3.3.3
   typescript: 5.1.6
@@ -2093,6 +2095,12 @@ packages:
       react-is: 16.13.1
     dev: false
 
+  /html-parse-stringify/3.0.1:
+    resolution: {integrity: sha512-KknJ50kTInJ7qIScF3jeaFRpMpE8/lfiTdzf/twXyPBLAGrLRTmkz3AdTnKeh40X8k9L2fdYwEp/42WGXIRGcg==}
+    dependencies:
+      void-elements: 3.1.0
+    dev: false
+
   /http-parser-js/0.5.8:
     resolution: {integrity: sha512-SGeBX54F94Wgu5RH3X5jsDtf4eHyRogWX1XGT3b4HuW3tQPM4AaBzoUji/4AAJNXCEOWZ5O0DgZmJw1947gD5Q==}
     dev: false
@@ -2520,7 +2528,7 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: false
 
-  /next-i18next/14.0.0_3j7mbtrtrfwdlkidbmn35m6l3m:
+  /next-i18next/14.0.0_h2xljqcp2gandk6fgyt6iac72i:
     resolution: {integrity: sha512-umv8hOZoSoAA+td3ErfemyO/5Ib2pnYCdQ8/Oy+fncS2skFIL3hHKRer3Oa3Nfm4Xbv5p6DHWzm3NhT1j4tWwg==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -2537,6 +2545,7 @@ packages:
       i18next-fs-backend: 2.1.5
       next: 13.4.10_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
+      react-i18next: 13.0.2_ctize4pwwv5bii3bzjqwwlegcq
     dev: false
 
   /next/13.4.10_biqbaboplfbrettd7655fr4n2y:
@@ -2944,6 +2953,26 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-i18next/13.0.2_ctize4pwwv5bii3bzjqwwlegcq:
+    resolution: {integrity: sha512-NEVxC32v0oR4egwYM0QM0WE93AiJG5r0NTXTL8mhQfAhsMfDS2fSO6jpluyfsfypP988KzUQrAXncspcJ7+GHA==}
+    peerDependencies:
+      i18next: '>= 23.2.3'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.22.6
+      html-parse-stringify: 3.0.1
+      i18next: 23.2.11
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-is/16.13.1:
@@ -3414,6 +3443,11 @@ packages:
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
+    dev: false
+
+  /void-elements/3.1.0:
+    resolution: {integrity: sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==}
+    engines: {node: '>=0.10.0'}
     dev: false
 
   /watchpack/2.4.0:
