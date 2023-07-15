@@ -25,7 +25,7 @@ const Navbar = () => {
                 <div className="flex items-center justify-between w-full md:w-auto">
                   <a href="#">
                     <span className="sr-only">Workflow</span>
-                    <div className="relative h-8 w-auto sm:h-10">
+                    <div className="relative h-8 w-8 sm:h-10">
                       <Image
                         fill={true}
                         alt=""
@@ -74,12 +74,12 @@ const Navbar = () => {
             <Popover.Panel
               focus
               static
-              className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+              className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50"
             >
               <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div className="px-5 pt-4 flex items-center justify-between">
                   <div>
-                    <div className="h-8 w-auto relative">
+                    <div className="h-8 w-8 relative">
                       <Image
                         fill={true}
                         src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
