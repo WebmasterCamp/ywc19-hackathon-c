@@ -10,7 +10,7 @@ const MainLayout = ({ children }: TMainLayout) => {
   return (
     <>
       <Navbar />
-      <div>{children}</div>
+      <div className="mt-24">{children}</div>
       <Footer />
     </>
   );

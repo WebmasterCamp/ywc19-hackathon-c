@@ -1,9 +1,12 @@
+import Hero from "@/components/Home/Hero";
+import Product from "@/components/Home/Product";
 import MainLayout from "@/layouts/MainLayout";
 
 export default function Home() {
   return (
     <MainLayout>
-      <div className="bg-green-500">Boom</div>
+      <Hero />
+      <Product button={true} />
     </MainLayout>
   );
 }
