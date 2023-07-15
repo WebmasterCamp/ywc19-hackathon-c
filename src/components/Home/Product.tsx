@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Container from "../Container";
+import Link from "next/link";
 
-const Product = () => {
+const Product = ({ button }: { button?: boolean }) => {
   return (
     <Container className="py-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -28,12 +29,18 @@ const Product = () => {
             ติดด้วยแผนที่ จ.ชุมพรและรอบๆ พร้อมห้อย tag
             สินค้าด้วยภาพประกอบรูปลูกมะพร้าว
           </p>
-          <button
-            type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Detail
-          </button>
+          {button && (
+            <div>
+              <Link href={`/product/kuyyyyyy`}>
+                <button
+                  type="button"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  Detail
+                </button>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </Container>

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface TContainer {
   children: ReactNode;
-  className: string;
+  className?: string;
 }
 
 const Container = ({ children, className }: TContainer) => {

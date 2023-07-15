@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <MainLayout>
       <Hero />
-      <Product />
+      <Product button={true} />
     </MainLayout>
   );
 }
