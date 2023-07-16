@@ -1,44 +1,88 @@
+import { getProduct } from "@/api/admin/products";
+import Container from "@/components/Container";
+import ProductCard from "@/components/ProductCard";
 import MainLayout from "@/layouts/MainLayout";
+import { TProducts } from "@/types/products";
+import { ChevronLeftIcon, MapPinIcon } from "@heroicons/react/24/outline";
+import { getDoc } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+type TCarts = TProducts & {
+  amount: number;
+  color: string;
+};
 
 const Payment = () => {
-  const products = [
-    {
-      id: 1,
-      name: "สินค้า 1",
-      quantity: 2,
-      price: 100,
-    },
-    {
-      id: 2,
-      name: "สินค้า 2",
-      quantity: 1,
-      price: 40,
-    },
-    {
-      id: 3,
-      name: "สินค้า 2",
-      quantity: 1,
-      price: 40,
-    },
-    {
-      id: 4,
-      name: "สินค้า 2",
-      quantity: 1,
-      price: 40,
-    },
-    {
-      id: 5,
-      name: "สินค้า 2",
-      quantity: 1,
-      price: 40,
-    },
-  ];
+  const [carts, setCarts] = useState<TCarts[] | null>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const cartLocal = JSON.parse(localStorage.getItem("item") || "[]");
+      const data: any = await Promise.all(
+        cartLocal.map(async (cart: TCarts) => {
+          const { data } = await getProduct(cart.id);
+
+          return {
+            ...data,
+            amount: cart.amount,
+            color: cart.color,
+          };
+        })
+      );
+
+      setCarts(data);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <MainLayout>
-      <div className="pb-12 sm:pb-16 lg:pb-24">
+      <Link href="/">
+        <button className="fixed top-0 left-0 m-4 text-custom-red bg-white p-2 rounded-full shadow-custom-shadow">
+          <ChevronLeftIcon className="h-6 w-6" />
+        </button>
+      </Link>
+
+      <Container className="py-6 space-y-6">
+        <h2 className="font-bold text-2xl text-center">รายการที่สั่งซื้อ</h2>
+
+        <div className="bg-white rounded-3xl shadow-custom-shadow p-6 space-y-4">
+          <h3 className="text-xl font-bold">คำสั่งซื้อของฉัน</h3>
+
+          <div className="space-y-2">
+            <h4 className="text-lg font-bold">ที่อยู่สำหรับจัดส่ง</h4>
+            <div className="flex flex-row space-x-2">
+              <div>
+                <MapPinIcon className="w-8 h-8 text-custom-red" />
+              </div>
+              <div>
+                69/45 ถนนเพลินพิทักษ์ ตำบลทับเที่ยง อำเภอเมือง จังหวัดตรัง 92000
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-lg">standingup shop</h4>
+            {carts?.map((cart: TProducts) => (
+              <div key={cart.id}>
+                <div className="relative w-24 h-24">
+                  <Image
+                    src={cart.image}
+                    alt=""
+                    fill={true}
+                    className="rounded-2xl"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Container>
+
+      {/* <div className="pb-12 sm:pb-16 lg:pb-24">
         <div className="relative">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-5 lg:space-y-0">
@@ -218,7 +262,7 @@ const Payment = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </MainLayout>
   );
 };

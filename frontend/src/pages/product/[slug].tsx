@@ -2,17 +2,11 @@ import MainLayout from "@/layouts/MainLayout";
 import Container from "@/components/Container";
 
 import Link from "next/link";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
-import app from "@/utils/firebase";
 import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import {
-  ArrowLeftIcon,
-  ChevronLeftIcon,
-  ShoppingBagIcon,
-} from "@heroicons/react/24/outline";
+import { ChevronLeftIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/Button";
 import { getProduct } from "@/api/admin/products";
 
