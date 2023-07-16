@@ -8,6 +8,9 @@ const nextConfig = {
     domains: ["images.unsplash.com", "www.computop-paygate.com"],
   },
   i18n,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;
