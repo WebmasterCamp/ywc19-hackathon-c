@@ -121,8 +121,9 @@ const ProductPage = ({ query }: { query: string }) => {
               <div className="flex flex-row space-x-4">
                 <h3 className="font-bold text-lg">สี</h3>
                 <div className="flex flex-row space-x-2">
-                  {product.color?.map((color: string) => (
+                  {product.color?.map((color: string, index: number) => (
                     <button
+                      key={index}
                       onClick={() => setSelectedColor(color)}
                       className={`h-6 w-6 rounded-full ${
                         color === selectedColor &&
