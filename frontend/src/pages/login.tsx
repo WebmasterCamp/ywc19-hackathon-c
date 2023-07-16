@@ -34,7 +34,7 @@ function Login() {
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-0 w-full rounded-t-3xl h-4/6 bg-white shadow-custom-shadow">
+        <div className="fixed bottom-0 max-w-[500px] left-0 lg:left-1/2 transform -translate-x-1/2 w-full rounded-t-3xl h-4/6 bg-white shadow-custom-shadow">
           <div className="p-6 h-full flex flex-col justify-between">
             <div className="space-y-4">
               <div>
