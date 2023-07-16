@@ -8,11 +8,11 @@ interface TMainLayout {
 
 const MainLayout = ({ children }: TMainLayout) => {
   return (
-    <>
+    <div>
       {/* <Navbar /> */}
       <div>{children}</div>
       <Footer />
-    </>
+    </div>
   );
 };
 

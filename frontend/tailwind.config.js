@@ -17,7 +17,7 @@ module.exports = {
         "custom-green": "#035B23",
         "custom-red": "#700015",
         "custom-orange": "#F36A0E",
-        "custom-light-gray": "#D0D0D0",
+        "custom-light-gray": "#F2F2F2",
       },
       boxShadow: {
         "custom-shadow": "0px 4px 23px 0px rgba(0, 0, 0, 0.25)",
