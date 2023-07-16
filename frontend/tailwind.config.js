@@ -9,7 +9,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        kanit: ["Kanit", "sans-serif"],
+        kanit: ["IBM Plex Sans", "sans-serif"],
+      },
+      colors: {
+        "custom-cream": "#F5E4CC",
+        "custom-dark-orange": "#B33D26",
+        "custom-green": "#035B23",
+        "custom-red": "#700015",
+        "custom-orange": "#F36A0E",
       },
     },
   },

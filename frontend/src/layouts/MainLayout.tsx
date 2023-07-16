@@ -9,8 +9,8 @@ interface TMainLayout {
 const MainLayout = ({ children }: TMainLayout) => {
   return (
     <>
-      <Navbar />
-      <div className="mt-24">{children}</div>
+      {/* <Navbar /> */}
+      <div>{children}</div>
       <Footer />
     </>
   );
