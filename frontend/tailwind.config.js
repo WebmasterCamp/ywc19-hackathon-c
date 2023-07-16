@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        kanit: ["IBM Plex Sans", "sans-serif"],
+        "ibm-plex-sans-thai": ["IBM Plex Sans Thai", "sans-serif"],
       },
       colors: {
         "custom-cream": "#F5E4CC",
@@ -17,6 +17,11 @@ module.exports = {
         "custom-green": "#035B23",
         "custom-red": "#700015",
         "custom-orange": "#F36A0E",
+        "custom-light-gray": "#D0D0D0",
+      },
+      boxShadow: {
+        "custom-shadow": "0px 4px 23px 0px rgba(0, 0, 0, 0.25)",
+        "custom-search": "0px 1px 12px 0px rgba(0, 0, 0, 0.25)",
       },
     },
   },
