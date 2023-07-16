@@ -35,12 +35,14 @@ const ProductCard = ({
         <div className="space-y-2">
           <div className="font-semibold">${price}</div>
           <div className="flex flex-row gap-4">
-            <Button
-              text="ตระกร้า"
-              color="secondary"
-              size="xs"
-              icon={<ShoppingBagIcon className="w-4 h-4" />}
-            />
+            <Link href={`/product/${id}`}>
+              <Button
+                text="ตระกร้า"
+                color="secondary"
+                size="xs"
+                icon={<ShoppingBagIcon className="w-4 h-4" />}
+              />
+            </Link>
             <Link href={`/product/${id}`}>
               <Button
                 text="ซื้อเลย"
