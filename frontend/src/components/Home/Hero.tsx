@@ -71,7 +71,7 @@ const Hero = () => {
               className="object-contain"
             />
           </div>
-          <div>Ror content thum why u mai thum ka e kwai</div>
+          <div>Real Thai In Single Click</div>
         </div>
         <div>
           <div className="text-right fixed top-0 right-0 m-6">

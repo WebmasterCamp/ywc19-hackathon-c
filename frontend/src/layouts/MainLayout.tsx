@@ -11,7 +11,7 @@ const MainLayout = ({ children }: TMainLayout) => {
   return (
     <div>
       {/* <Navbar /> */}
-      <div>{children}</div>
+      <div className="w-[500px] mx-auto">{children}</div>
       <Cookie />
     </div>
   );

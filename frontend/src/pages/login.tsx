@@ -1,18 +1,13 @@
 import Image from "next/image";
 import MainLayout from "@/layouts/MainLayout";
 
-
-import {
-  LockClosedIcon,
-  UserIcon,
-} from "@heroicons/react/24/outline";
+import { LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import Router from "next/router";
 
-
 function Login() {
   // const [roles, setRoles] = useState("")
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   const handleChange = (event: any) => {
     setMessage(event.target.value);
@@ -20,11 +15,11 @@ function Login() {
 
   const handleClick = () => {
     if (message == "admin") {
-      Router.push("/dashboard")
+      Router.push("/dashboard");
     } else if (message == "manager") {
-      Router.push("/analytic")
+      Router.push("/analytic");
     } else {
-      Router.push("/")
+      Router.push("/");
     }
   };
 
@@ -95,7 +90,7 @@ function Login() {
       </div>
 
     </MainLayout>
-  )
+  );
 }
 
-export default Login
+export default Login;
