@@ -6,3 +6,6 @@ run:
 
 runprod:
 	go run cmd/main.go -mode=production
+
+dockerbuild:
+	docker build -t ywc19-c-api .
