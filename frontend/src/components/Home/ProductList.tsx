@@ -19,6 +19,10 @@ import { TProducts, TProductsResponse } from "@/types/products";
 const ProductList = () => {
   const [products, setProducts] = useState<any>([]);
 
+  const [category, setCategory] = useState<"all" | "northern" | "southern">(
+    "all"
+  );
+
   useEffect(() => {
     const fetchProducts = async () => {
       const { data }: TProductsResponse = await getProducts();
@@ -28,16 +32,24 @@ const ProductList = () => {
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
-
   return (
     <Container className="pt-12 space-y-6 pb-16">
       <div className="flex flex-wrap gap-x-2">
-        <Category active={true}>All</Category>
-        <Category active={false}>Northern</Category>
-        <Category active={false}>Southern</Category>
+        <Category active={category == "all"} onClick={() => setCategory("all")}>
+          All
+        </Category>
+        <Category
+          active={category == "northern"}
+          onClick={() => setCategory("northern")}
+        >
+          Northern
+        </Category>
+        <Category
+          active={category == "southern"}
+          onClick={() => setCategory("southern")}
+        >
+          Southern
+        </Category>
       </div>
 
       {products.length != 0 &&

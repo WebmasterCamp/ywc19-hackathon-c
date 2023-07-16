@@ -28,18 +28,31 @@ const ProductPage = ({ query }: { query: string }) => {
   }, []);
 
   const handleAddToCart = async () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    localStorage.setItem(
-      "item",
-      JSON.stringify([
-        cart,
-        {
-          id: product.id,
-          color: selectedColor,
-          amount,
-        },
-      ])
-    );
+    if (localStorage.getItem("cart") === null) {
+      localStorage.setItem(
+        "item",
+        JSON.stringify([
+          {
+            id: product.id,
+            color: selectedColor,
+            amount,
+          },
+        ])
+      );
+    } else {
+      const cart = JSON.parse(localStorage.getItem("cart") as string);
+      localStorage.setItem(
+        "item",
+        JSON.stringify([
+          cart,
+          {
+            id: product.id,
+            color: selectedColor,
+            amount,
+          },
+        ])
+      );
+    }
   };
 
   const handleBuy = async () => {
