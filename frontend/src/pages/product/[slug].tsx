@@ -8,6 +8,12 @@ import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import {
+  ArrowLeftIcon,
+  ChevronLeftIcon,
+  ShoppingBagIcon,
+} from "@heroicons/react/24/outline";
+import Button from "@/components/Button";
 
 const ProductPage = ({ query }: { query: string }) => {
   const db = getFirestore(app);
@@ -43,54 +49,80 @@ const ProductPage = ({ query }: { query: string }) => {
 
   return (
     <MainLayout>
-      <Container className="py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <div className="relative w-full aspect-video">
-              <Image
-                src={product.image}
-                fill={true}
-                className="object-cover"
-                alt=""
-              />
+      <div className="relative">
+        <div className="w-full aspect-[3/4] relative">
+          <Image
+            src={product.image}
+            alt=""
+            fill={true}
+            className="object-cover"
+          />
+        </div>
+
+        <Link href="/">
+          <button className="absolute top-0 left-0 m-4 text-custom-red bg-white p-2 rounded-full shadow-custom-shadow">
+            <ChevronLeftIcon className="h-6 w-6" />
+          </button>
+        </Link>
+      </div>
+
+      <div className="fixed bottom-0 left-0 w-full rounded-t-3xl h-4/6 bg-white shadow-custom-shadow">
+        <div className="p-6 h-full flex flex-col justify-between">
+          <div className="space-y-4">
+            <div>
+              <h2 className="text-xl font-bold">{product.name}</h2>
+              <p>by standingup shop</p>
+            </div>
+            <p>{product.description}</p>
+            <div className="space-y-2">
+              <h3 className="font-bold text-lg">ภาพรวมผลิตภัณฑ์</h3>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="bg-custom-light-gray rounded-3xl aspect-square"></div>
+                <div className="bg-custom-light-gray rounded-3xl aspect-square"></div>
+                <div className="bg-custom-light-gray rounded-3xl aspect-square"></div>
+              </div>
+            </div>
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-row space-x-4">
+                <h3 className="font-bold text-lg">สี</h3>
+                <div className="flex flex-row space-x-2">
+                  <button className="bg-gray-700 h-6 w-6 rounded-full"></button>
+                  <button className="bg-custom-dark-orange h-6 w-6 rounded-full"></button>
+                  <button className="bg-custom-green h-6 w-6 rounded-full"></button>
+                </div>
+              </div>
+
+              <div className="bg-custom-light-gray font-bold flex flex-row justify-center items-center rounded-full space-x-2">
+                <button className="py-2 px-4 rounded-l-full">-</button>
+                <div>1</div>
+                <button className="py-2 px-4 rounded-r-full">+</button>
+              </div>
             </div>
           </div>
+
           <div className="space-y-4">
-            <h2 className="font-bold text-2xl">{product.name}</h2>
-            <p>{product.description}</p>
+            <hr />
+            <div className="flex flex-row justify-between items-center">
+              <div className="text-2xl font-bold">${product.price}</div>
+
+              <div className="flex flex-row gap-4">
+                <Button
+                  text="ตระกร้า"
+                  color="secondary"
+                  size="xs"
+                  icon={<ShoppingBagIcon className="w-4 h-4" />}
+                />
+                <Button
+                  text="ซื้อเลย"
+                  size="xs"
+                  color="primary"
+                  icon={<ShoppingBagIcon className="w-4 h-4" />}
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </Container>
-      <Container className="space-y-6">
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Amount
-          </label>
-          <div className="mt-1">
-            <input
-              type="tel"
-              name="amount"
-              onChange={(e: any) => setAmount(e.target.value)}
-              id="amount"
-              className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-              placeholder="0"
-              defaultValue={0}
-            />
-          </div>
-        </div>
-        <div>
-          <button
-            onClick={handleBuy}
-            type="button"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Buy !
-          </button>
-        </div>
-      </Container>
+      </div>
     </MainLayout>
   );
 };

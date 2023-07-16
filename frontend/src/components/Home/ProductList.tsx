@@ -13,29 +13,19 @@ import {
 import { useEffect, useState } from "react";
 import Category from "../Category";
 import ProductCard from "../ProductCard";
+import { getProducts } from "@/api/admin/products";
+import { TProducts, TProductsResponse } from "@/types/products";
 
-const ProductList = ({ button }: { button?: boolean }) => {
-  const db = getFirestore(app);
-
+const ProductList = () => {
   const [products, setProducts] = useState<any>([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const q = query(collection(db, "products"));
-      const querySnapshot = await getDocs(q);
-
-      const data = querySnapshot.docs.map((doc) => {
-        const id = doc.id;
-        const res = doc.data();
-        return {
-          id,
-          ...res,
-        };
-      });
+    const fetchProducts = async () => {
+      const { data }: TProductsResponse = await getProducts();
       setProducts(data);
     };
 
-    fetchData();
+    fetchProducts();
   }, []);
 
   useEffect(() => {
@@ -50,24 +40,17 @@ const ProductList = ({ button }: { button?: boolean }) => {
         <Category active={false}>Southern</Category>
       </div>
 
-      <ProductCard
-        title="ชื่อผลิตภัณฑ์"
-        description="รายละเอียดผลิตภัณฑ์กำลงรอคอนเท้นต์อยู่จะบู้จะบี้มารากู"
-        price={567}
-        image={"/rect-36.png"}
-      />
-      <ProductCard
-        title="ชื่อผลิตภัณฑ์"
-        description="รายละเอียดผลิตภัณฑ์กำลงรอคอนเท้นต์อยู่จะบู้จะบี้มารากู"
-        price={567}
-        image={"/rect-36.png"}
-      />
-      <ProductCard
-        title="ชื่อผลิตภัณฑ์"
-        description="รายละเอียดผลิตภัณฑ์กำลงรอคอนเท้นต์อยู่จะบู้จะบี้มารากู"
-        price={567}
-        image={"/rect-36.png"}
-      />
+      {products.length != 0 &&
+        products.map((product: TProducts, index: number) => (
+          <ProductCard
+            key={index}
+            id={product.id}
+            title={product.name}
+            description={product.description}
+            price={product.price}
+            image={product.image}
+          />
+        ))}
     </Container>
   );
 };
