@@ -6,6 +6,7 @@ const Button = ({
   color,
   icon,
   size,
+  full,
   onClick,
 }: {
   text: string;
@@ -13,9 +14,12 @@ const Button = ({
   size: "xs" | "sm" | "md" | "lg";
   icon: ReactNode;
   onClick?: () => void;
+  full?: boolean;
 }) => {
   const button = tv({
-    base: "rounded-full px-3 py-2 flex flex-row gap-2 justify-center items-center",
+    base: `rounded-full px-3 py-2 flex flex-row gap-2 justify-center items-center ${
+      full ? "w-full" : ""
+    }`,
     variants: {
       color: {
         primary:
@@ -33,7 +37,7 @@ const Button = ({
   });
   return (
     <button onClick={onClick} className={button({ color, size })}>
-      <div>{icon}</div>
+      {icon && <div>{icon}</div>}
       <div>{text}</div>
     </button>
   );

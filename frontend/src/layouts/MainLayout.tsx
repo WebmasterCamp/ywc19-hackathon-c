@@ -1,3 +1,4 @@
+import Cookie from "@/components/Cookie";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ReactNode } from "react";
@@ -11,7 +12,7 @@ const MainLayout = ({ children }: TMainLayout) => {
     <div>
       {/* <Navbar /> */}
       <div>{children}</div>
-      <Footer />
+      <Cookie />
     </div>
   );
 };
