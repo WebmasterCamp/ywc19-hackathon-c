@@ -29,7 +29,7 @@ function Login() {
         <div className="h-screen">
           <div className="flex flex-row justify-center items-center max-h-screen pt-0">
             <div className="flex flex-col justify-center items-center mt-20">
-              <Image src="/logo.svg" alt="Logo" width={200} height={200} />
+              <Image src="/loginlogo.svg" alt="Logo" width={414} height={172} />
             </div>
           </div>
         </div>
