@@ -6,7 +6,7 @@ import Container from "@/components/Container";
 
 const Hero = () => {
   return (
-    <Container className="relative bg-custom-cream py-8 shadow-lg">
+    <Container className="relative bg-custom-cream py-8">
       <div className="flex flex-row gap-x-4">
         <div className="space-y-2">
           <h1 className="font-bold text-2xl">PROUDVERRR</h1>
@@ -33,8 +33,8 @@ const Hero = () => {
           </svg>
         </div>
       </div>
-      <div className="absolute top-full left-0 px-6 transform -translate-y-1/2 flex flex-row gap-x-2 w-full">
-        <div className="bg-white py-2 px-4 flex flex-row gap-2 items-center rounded-full w-full shadow-lg">
+      <div className="absolute top-full left-0 px-4 transform -translate-y-1/2 flex flex-row gap-x-2 w-full">
+        <div className="bg-white py-2 px-4 flex flex-row gap-2 items-center rounded-2xl w-full shadow-custom-search">
           <MagnifyingGlassIcon className="w-6 h-6 text-gray-400" />
           <input
             type="text"
@@ -42,7 +42,7 @@ const Hero = () => {
             className="outline-none w-full focus:outline-none bg-transparent border-none  outline-dashed ring-0 placeholder-gray-400 py-1 px-2"
           />
         </div>
-        <button className="bg-white p-2 rounded-full shadow-lg">
+        <button className="bg-white p-2 rounded-2xl shadow-custom-search">
           <AdjustmentsHorizontalIcon className="w-8 h-8" />
         </button>
       </div>
