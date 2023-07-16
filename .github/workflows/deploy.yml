@@ -42,9 +42,16 @@ jobs:
         with:
           image: ghcr.io/webmastercamp/${{ github.event.repository.name }}-backend@${{ steps.build-and-push.outputs.digest }}
           deploymentName: backend
-          port: 80
+          port: 3000
         env:
-          TZ: Asia/Bangkok
+          PORT: ${{ secrets.PORT }}
+          TZ: ${{ secrets.TZ }}
+          DATABASE_TABLE_PREFIX: ${{ secrets.DATABASE_TABLE_PREFIX }}
+          DATABASE_POSTGRESQL_HOST: ${{ secrets.DATABASE_POSTGRESQL_HOST }}
+          DATABASE_POSTGRESQL_PORT: ${{ secrets.DATABASE_POSTGRESQL_PORT }}
+          DATABASE_POSTGRESQL_USERNAME: ${{ secrets.DATABASE_POSTGRESQL_USERNAME }}
+          DATABASE_POSTGRESQL_PASSWORD: ${{ secrets.DATABASE_POSTGRESQL_PASSWORD }}
+          DATABASE_POSTGRESQL_DBNAME: ${{ secrets.DATABASE_POSTGRESQL_DBNAME }}
   frontend:
     runs-on: ubuntu-latest
     steps:
