@@ -4,6 +4,7 @@ type TProducts = {
   description: string;
   price: number;
   image: string;
+  color: string[];
   createdAt: string;
 };
 

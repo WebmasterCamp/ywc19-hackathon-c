@@ -6,11 +6,13 @@ const Button = ({
   color,
   icon,
   size,
+  onClick,
 }: {
   text: string;
   color: "primary" | "secondary";
   size: "xs" | "sm" | "md" | "lg";
   icon: ReactNode;
+  onClick?: () => void;
 }) => {
   const button = tv({
     base: "rounded-full px-3 py-2 flex flex-row gap-2 justify-center items-center",
@@ -30,7 +32,7 @@ const Button = ({
     },
   });
   return (
-    <button className={button({ color, size })}>
+    <button onClick={onClick} className={button({ color, size })}>
       <div>{icon}</div>
       <div>{text}</div>
     </button>

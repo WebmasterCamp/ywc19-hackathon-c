@@ -14,35 +14,42 @@ import {
   ShoppingBagIcon,
 } from "@heroicons/react/24/outline";
 import Button from "@/components/Button";
+import { getProduct } from "@/api/admin/products";
 
 const ProductPage = ({ query }: { query: string }) => {
-  const db = getFirestore(app);
   const router = useRouter();
 
   const [product, setProduct] = useState<any>({});
-  const [amount, setAmount] = useState<number>(0);
+  const [amount, setAmount] = useState<number>(1);
+  const [selectedColor, setSelectedColor] = useState<string>("");
 
   useEffect(() => {
     const fetchData = async () => {
-      if (router.query.slug) {
-        const docRef = doc(db, "products", query);
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.data();
-        setProduct(data);
-      }
+      const { data } = await getProduct(query);
+      setProduct(data);
+      setSelectedColor(data.color[0]);
     };
 
     fetchData();
   }, []);
 
-  const handleBuy = async () => {
+  const handleAddToCart = async () => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     localStorage.setItem(
       "item",
-      JSON.stringify({
-        id: product.name,
-        amount,
-      })
+      JSON.stringify([
+        cart,
+        {
+          id: product.id,
+          color: selectedColor,
+          amount,
+        },
+      ])
     );
+  };
+
+  const handleBuy = async () => {
+    handleAddToCart();
 
     router.push("/payment");
   };
@@ -77,25 +84,65 @@ const ProductPage = ({ query }: { query: string }) => {
             <div className="space-y-2">
               <h3 className="font-bold text-lg">ภาพรวมผลิตภัณฑ์</h3>
               <div className="grid grid-cols-3 gap-2">
-                <div className="bg-custom-light-gray rounded-3xl aspect-square"></div>
-                <div className="bg-custom-light-gray rounded-3xl aspect-square"></div>
-                <div className="bg-custom-light-gray rounded-3xl aspect-square"></div>
+                <div className="bg-custom-light-gray rounded-3xl aspect-square relative">
+                  <Image
+                    src={product.image}
+                    alt=""
+                    fill={true}
+                    className="rounded-3xl"
+                  />
+                </div>
+                <div className="bg-custom-light-gray rounded-3xl aspect-square relative">
+                  <Image
+                    src={product.image}
+                    alt=""
+                    fill={true}
+                    className="rounded-3xl"
+                  />
+                </div>
+                <div className="bg-custom-light-gray rounded-3xl aspect-square relative">
+                  <Image
+                    src={product.image}
+                    alt=""
+                    fill={true}
+                    className="rounded-3xl"
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-row justify-between items-center">
               <div className="flex flex-row space-x-4">
                 <h3 className="font-bold text-lg">สี</h3>
                 <div className="flex flex-row space-x-2">
-                  <button className="bg-gray-700 h-6 w-6 rounded-full"></button>
-                  <button className="bg-custom-dark-orange h-6 w-6 rounded-full"></button>
-                  <button className="bg-custom-green h-6 w-6 rounded-full"></button>
+                  {product.color?.map((color: string) => (
+                    <button
+                      onClick={() => setSelectedColor(color)}
+                      className={`h-6 w-6 rounded-full ${
+                        color === selectedColor &&
+                        "ring-2 ring-offset-2 ring-custom-orange"
+                      }`}
+                      style={{
+                        backgroundColor: color,
+                      }}
+                    ></button>
+                  ))}
                 </div>
               </div>
 
               <div className="bg-custom-light-gray font-bold flex flex-row justify-center items-center rounded-full space-x-2">
-                <button className="py-2 px-4 rounded-l-full">-</button>
-                <div>1</div>
-                <button className="py-2 px-4 rounded-r-full">+</button>
+                <button
+                  className="py-2 px-4 rounded-l-full"
+                  onClick={() => setAmount(amount - 1 > 1 ? amount - 1 : 1)}
+                >
+                  -
+                </button>
+                <div>{amount}</div>
+                <button
+                  className="py-2 px-4 rounded-r-full"
+                  onClick={() => setAmount(amount + 1)}
+                >
+                  +
+                </button>
               </div>
             </div>
           </div>
@@ -107,12 +154,14 @@ const ProductPage = ({ query }: { query: string }) => {
 
               <div className="flex flex-row gap-4">
                 <Button
+                  onClick={handleAddToCart}
                   text="ตระกร้า"
                   color="secondary"
                   size="xs"
                   icon={<ShoppingBagIcon className="w-4 h-4" />}
                 />
                 <Button
+                  onClick={handleBuy}
                   text="ซื้อเลย"
                   size="xs"
                   color="primary"

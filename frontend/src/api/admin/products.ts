@@ -1,5 +1,12 @@
 import app from "@/utils/firebase";
-import { collection, getDocs, getFirestore, query } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+} from "firebase/firestore";
 
 const db = getFirestore(app);
 
@@ -17,6 +24,7 @@ const getProducts = async () => {
       description: res.description,
       image: res.image,
       price: res.price,
+      color: res.color,
       createdAt: res.createdAt,
     };
   });
@@ -27,4 +35,23 @@ const getProducts = async () => {
   };
 };
 
-export { getProducts };
+const getProduct = async (query: string) => {
+  const docRef = doc(db, "products", query);
+  const docSnap = await getDoc(docRef);
+  const data: any = docSnap.data();
+
+  return {
+    status: true,
+    data: {
+      id: docSnap.id,
+      name: data.name,
+      description: data.description,
+      image: data.image,
+      price: data.price,
+      color: data.color,
+      createdAt: data.createdAt,
+    },
+  };
+};
+
+export { getProducts, getProduct };
