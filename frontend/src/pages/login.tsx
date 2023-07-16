@@ -6,9 +6,28 @@ import {
   LockClosedIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
+import { useState } from "react";
+import Router from "next/router";
 
 
 function Login() {
+  // const [roles, setRoles] = useState("")
+  const [message, setMessage] = useState('');
+
+  const handleChange = (event: any) => {
+    setMessage(event.target.value);
+  };
+
+  const handleClick = () => {
+    if (message == "admin") {
+      Router.push("/dashboard")
+    } else if (message == "manager") {
+      Router.push("/analytic")
+    } else {
+      Router.push("/")
+    }
+  };
+
   return (
     <MainLayout>
       <div className=" bg-[#F5E4CC]">
@@ -37,6 +56,8 @@ function Login() {
                 <input
                   type="text"
                   placeholder="username"
+                  onChange={handleChange}
+                  value={message}
                   className="outline-none w-full focus:outline-none bg-transparent border-none  outline-dashed ring-0 placeholder-gray-400 py-1 px-2"
                 />
               </div>
@@ -48,12 +69,17 @@ function Login() {
                   type="text"
                   placeholder="password"
                   className="outline-none w-full focus:outline-none bg-transparent border-none  outline-dashed ring-0 placeholder-gray-400 py-1 px-2"
+                  
+                  
+                  
                 />
               </div>
             </div>
             <div className="flex flex-row-reverse"><p className="text-custom-dark-orange font-bold">ลืมรหัสผ่าน</p></div>
             
-            <button className="rounded-full px-5 py-3 flex flex-row gap-2 justify-center items-center bg-custom-dark-orange border border-custom-dark-orange text-white w-full">
+            <button 
+            onClick={handleClick}
+            className="rounded-full px-5 py-3 flex flex-row gap-2 justify-center items-center bg-custom-dark-orange border border-custom-dark-orange text-white w-full">
               <div>เข้าสู่ระบบ</div>
             </button>
 
