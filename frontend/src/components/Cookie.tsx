@@ -51,7 +51,7 @@ const Cookie = () => {
             </svg>
           </div>
           <div className="font-bold">
-            Accept 'Cookies' For collecting cookies to deliver better user
+            Accept &apos;Cookies&apos; For collecting cookies to deliver better user
             experience
           </div>
         </div>
