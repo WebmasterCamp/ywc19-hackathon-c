@@ -4,15 +4,34 @@ import {
 } from "@heroicons/react/24/outline";
 import Container from "@/components/Container";
 
+import Image from "next/image";
+import Link from "next/link";
+
+import { UserIcon } from "@heroicons/react/24/outline";
+
 const Hero = () => {
   return (
     <Container className="relative bg-custom-cream py-8">
       <div className="flex flex-row gap-x-4">
         <div className="space-y-2">
-          <h1 className="font-bold text-2xl">PROUDVERRR</h1>
+          <div className="w-32 aspect-video relative">
+            <Image
+              src="/logo.svg"
+              fill={true}
+              alt=""
+              className="object-contain"
+            />
+          </div>
           <div>Ror content thum why u mai thum ka e kwai</div>
         </div>
         <div>
+          <div className="text-right fixed top-0 right-0 m-6">
+            <Link href="/login">
+              <button className="p-2 bg-white rounded-full shadow text-custom-dark-orange">
+                <UserIcon className="w-6 h-6" />
+              </button>
+            </Link>
+          </div>
           <svg viewBox="0 0 91 78" className="w-20 h-20" fill="none">
             <path
               d="M35.6183 12.4536H19.9922C16.1262 12.4536 12.9922 15.5876 12.9922 19.4536V32.3276C12.9922 36.1936 16.1262 39.3276 19.9922 39.3276H35.6183C39.4843 39.3276 42.6183 36.1936 42.6183 32.3276V19.4536C42.6183 15.5876 39.4843 12.4536 35.6183 12.4536Z"
