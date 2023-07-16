@@ -50,6 +50,9 @@ func initializeConnectPostgreSQL() {
 	// AutoMigrate database
 	err = database.AutoMigrate(
 		&modelDatabase.Account{},
+		&modelDatabase.Bill{},
+		&modelDatabase.BillItem{},
+		&modelDatabase.Product{},
 	)
 	if err != nil {
 		logger.Fatal("Failed to AutoMigrate database", logger.Field("error", err))
