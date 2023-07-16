@@ -35,10 +35,10 @@ function Login() {
         <div className="flex flex-row justify-center items-center max-h-screen pt-0">
           <div className="flex flex-col justify-center items-center mt-20">
             <Image 
-              src="/logo.svg"
+              src="/loginlogo.svg"
               alt="Logo"
-              width={200}
-              height={200}
+              width={414}
+              height={172}
             />
           </div>
         </div>
@@ -66,7 +66,7 @@ function Login() {
               <div className="bg-white py-4 px-4 flex flex-row gap-2 items-center rounded-2xl w-full shadow-custom-search">
                 <UserIcon className="w-6 h-6 text-custom-dark-orange" />
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="outline-none w-full focus:outline-none bg-transparent border-none  outline-dashed ring-0 placeholder-gray-400 py-1 px-2"
                   

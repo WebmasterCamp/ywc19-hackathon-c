@@ -18,7 +18,7 @@ const ProductCard = ({
   image: string;
 }) => {
   return (
-    <div className="bg-white shadow-custom-shadow rounded-3xl py-4 px-4 flex flex-row gap-4">
+    <Link href={`/product/${id}`} className="bg-white shadow-custom-shadow rounded-3xl py-4 px-4 flex flex-row gap-4">
       <div className="relative">
         <div className="relative w-[140px] aspect-square rounded-3xl bg-custom-light-gray">
           <Image src={image} alt="" fill={true} className="rounded-3xl" />
@@ -54,7 +54,7 @@ const ProductCard = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
